@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .contain {
+            background-color: #0d0629;
+            border-radius: 10px;
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        #head {
+            margin-bottom: 10px;
+        }
+
+        .qrtext {
+            margin-bottom: 20px;
+        }
+
+        #text {
+            width: 100%;
+            padding: 20px;
+            font-size: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        #imgbox {
+            text-align: center;
+        }
+
+        #qrimg {
+            max-width: 150px;
+            display: none;
+            margin-top: 10px;
+        }
+
+        #btn {
+            display: block;
+            width: 50%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #1c640d;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #btn:hover {
+            background-color: #043b04;
+        }
+    </style>
+</head>
+<body>
+    <div class="contain">
+        
+        <div class="qrtext">
+            <input type="text" name="" id="text" placeholder="Enter text">
+        </div>
+        <div id="imgbox">
+            <img src="" alt="" id="qrimg" onload="this.style.display='block'">
+        </div>
+        <input type="button" id="btn" value="Generate" onclick="qrcode()">
+    </div>
+    <script>
+        let qrimg = document.getElementById("qrimg");
+        qrimg.style.display = 'none';
+
+        function qrcode() {
+            let txt = document.getElementById("text").value;
+            if (txt.length !== 0) {
+                qrimg.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + txt;
+                qrimg.style.display = 'block';
+            } else {
+                document.getElementById("text").style.borderColor = 'red';
+            }
+        }
+    </script>
+</body>
+</html>
